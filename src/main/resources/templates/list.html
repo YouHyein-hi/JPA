@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>리스트 페이지</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
+<body class="bg-light">
+<!-- header 추가 -->
+  <div class = "container">
+    <div class = "py-5 text center">
+      <h2>리스트</h2>
+    </div>
+    <div class="row justify-content-center">
+      <tabel>
+        <thead>
+        <tr>
+          <th class="one wide">번호</th>
+          <th class="ten wide">글제목</th>
+          <th class="two wide">작성자</th>
+          <th class="three wide">작성일</th>
+        </tr>
+        </thead>
+      </tabel>
+    </div>
+  </div>
+<div th:insert="common/header.html" id="header"></div>
+<!--
+<div id="wrap">
+  <a th:href="@{/post}">글쓰기</a>
+
+  <table>
+    <thead>
+    <tr>
+      <th class="one wide">번호</th>
+      <th class="ten wide">글제목</th>
+      <th class="two wide">작성자</th>
+      <th class="three wide">작성일</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    &lt;!&ndash; CONTENTS !&ndash;&gt;
+    <tr th:each="board : ${boardList}">
+      <td>
+        <span th:text="${board.id}"></span>
+      </td>
+      <td>
+        <a th:href="@{'/post/' + ${board.id}}">
+          <span th:text="${board.title}"></span>
+        </a>
+      </td>
+      <td>
+        <span th:text="${board.writer}"></span>
+      </td>
+      <td>
+        <span th:text="${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm')}"></span>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div>
+    <span th:each="pageNum : ${pageList}" th:inline="text">
+        <a th:href="@{'/?page=' + ${pageNum}}">[[${pageNum}]]</a>
+    </span>
+  </div>
+</div>
+
+&lt;!&ndash; footer 추가 &ndash;&gt;
+<div th:insert="common/footer.html" id="footer"></div>-->
+</body>
+</html>

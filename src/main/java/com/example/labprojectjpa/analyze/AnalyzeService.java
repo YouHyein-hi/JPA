@@ -20,7 +20,7 @@ public class AnalyzeService {
                 .pictureName(AnalyzeDto.getPictureName())
                 .analyzeResult(AnalyzeDto.getAnalyzeResult())
                 .analyzePercent(AnalyzeDto.getAnalyzePercent())
-                .userIp(AnalyzeDto.getUserIp())
+                .userIp(AnalyzeDto.getRequestIp())
                 .build();
         analyzeRepository.save(analyze);
         return analyze;

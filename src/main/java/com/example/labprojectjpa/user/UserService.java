@@ -28,4 +28,6 @@ public class UserService {
         User user = userRepository.findByUserId(userId).orElseThrow(() -> new RuntimeException("DB 조회 결과가 없습니다."));
         return user;
     }
+
+
 }

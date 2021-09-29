@@ -1,12 +1,11 @@
 package com.example.labprojectjpa.user;
 
+import com.sun.istack.logging.Logger;
 import lombok.RequiredArgsConstructor;
+import org.apache.catalina.UserDatabase;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -14,7 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserController {
 
-    private final UserService userService;
+    private UserService userService;
 
     @GetMapping("/user")
     public ResponseEntity<List<User>> getAllUser(){
@@ -33,4 +32,5 @@ public class UserController {
         User user = userService.addUser(userDto);
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
+
 }

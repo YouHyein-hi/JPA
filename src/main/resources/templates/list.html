@@ -60,24 +60,47 @@
               <thead class="thead-primary">
               <tr>
                 <th width="5%">번호</th>
-                <th width="40%">촬영한 사진</th>
+                <th width="40%">촬영 사진</th>
                 <th width="20%">분석 결과</th>
-                <th width="10%">분석 %</th>
+                <th width="10%">%</th>
                 <th width="20%">사진 촬영 날짜</th>
               </tr>
               </thead>
-              <tbody>
+              <tbody id="tbody">
                 <div var="article" items="${articles}" varStatus="status">
-                  <tr>
-                    <td>${Analyze.id}</td>
+                  <tr th:each="board : ${analyzeList}">
+                    <td>
+                      <span th:text="${analyze.id}"></span>
+                    </td>
+                    <td>
+                        <span th:text="${banalyze.pictureName}"></span>
+                      </a>
+                    </td>
+                    <td>
+                      <span th:text="${banalyze.analyzeResult}"></span>
+                    </td>
+                    <td>
+                      <span th:text="${banalyze.analyzePercent}"></span>
+                    </td>
+                    <td>
+                      <span th:text="${banalyze.pictureDate}"></span>
+                    </td>
+                  </tr>
+                  <!--<tr>
+                    <td>${Analyze.id}</td>z
                     <td>${이미지}</td>
                     <td>${Analyze.analyzeResult}</td>
                     <td>${Analyze.analyzePercent}</td>
                     <td>${Analyze.pictureDate}</td>
-                  <tr>
+                  <tr>-->
                 </div>
               </tbody>
             </table>
+            <!--<div> &lt;!&ndash; 페이징 기능 &ndash;&gt;
+              <span th:each = "pageNum : ${pageList}" th:inline = "text">
+                  <a th:href = "@{'/?page=' + ${pageNum}}">[[${pageNum}]]</a>
+                </span>
+            </div>-->
           </div>
         </div>
       </div>
@@ -86,3 +109,48 @@
   </body>
 </html>
 
+
+
+
+<!--
+<!DOCTYPE html>
+<html lang = "ko">
+  <head>
+    <meta charset="UTF-8">
+    <title>게시판</title>
+    <link rel="stylesheet" th:htef="@{/css/style.css}"
+  </head>
+  <body>
+    <div class = "container">
+      <h2>게시판 목록</h2>
+      <table class = "board_list">
+        <colgorup>
+          <col width="15%"/>
+          <col width="*%"/>
+          <col width="15%"/>
+          <col width="20%"/>
+        </colgorup>
+        <thead>
+          <tr>
+            <th scope="col">글 번호</th>
+            <th scope="col">사진</th>
+            <th scope="col">분석 결과</th>
+            <th scope="col">분석 %</th>
+            <th scope="col">촬영 날짜</th>
+          </tr>
+        </thead>
+        <tdody>
+          <tr th:if = "${#lists.size{list} > 0" th:eatch = "list : ${list}">
+            <td th:text = "${list.boardidx}"></td>
+            <td class = "title" th:text= "${list.title}"></td>
+            <td th:text = "${#temporals.format(list.createdDatetime,'yyyy-MM-dd HH:mm:ss')}"></td>
+          </tr>
+          <tr th:unless="'${#lists.size(list)} > 0'">
+            <td colspan = "4">조회된 결과가 없습니다.</td>
+          </tr>
+        </tdody>
+      </table>
+      <a href = "board.openBoardWrite.do" class = "btn">글 쓰기</a>
+    </div>
+  </body>
+</html>-->

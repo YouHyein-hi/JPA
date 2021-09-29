@@ -26,5 +26,4 @@ public class User {
 
     @Column
     private String userPassword;
-
 }

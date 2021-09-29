@@ -11,5 +11,5 @@ public class AnalyzeDTO {
     private String pictureName;
     private String analyzeResult;
     private Integer analyzePercent;
-    private String userIp;
+    private String requestIp;
 }

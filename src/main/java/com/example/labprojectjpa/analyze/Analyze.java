@@ -13,7 +13,6 @@ import javax.persistence.Id;
 @Entity
 @Getter
 @NoArgsConstructor
-/*@AllArgsConstructor*/
 @Builder
 public class Analyze {
 

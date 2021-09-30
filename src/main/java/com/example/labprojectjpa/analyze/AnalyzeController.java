@@ -3,7 +3,6 @@ package com.example.labprojectjpa.analyze;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,4 +33,12 @@ public class AnalyzeController {
         Analyze analyze = analyzeService.addAnalyze(analyzeDto);
         return new ResponseEntity<>(analyze, HttpStatus.CREATED);
     }
+
+  /*  *//*게시글 관련*//*
+    @GetMapping("/")
+    public String list(Model model) {
+        List<AnalyzeDTO> analyzeList = AnalyzeService.getAnalyzelistDTO();
+        model.addAttribute("analyzeList", analyzeList);
+        return "list.html";
+    }*/
 }

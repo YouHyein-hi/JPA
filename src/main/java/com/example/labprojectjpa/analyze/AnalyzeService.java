@@ -1,9 +1,13 @@
 package com.example.labprojectjpa.analyze;
 
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 @Service
 @RequiredArgsConstructor
@@ -20,7 +24,7 @@ public class AnalyzeService {
                 .pictureName(AnalyzeDto.getPictureName())
                 .analyzeResult(AnalyzeDto.getAnalyzeResult())
                 .analyzePercent(AnalyzeDto.getAnalyzePercent())
-                .userIp(AnalyzeDto.getRequestIp())
+                .requestIp(AnalyzeDto.getRequestIp())
                 .build();
         analyzeRepository.save(analyze);
         return analyze;

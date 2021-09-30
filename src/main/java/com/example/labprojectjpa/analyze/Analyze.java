@@ -13,7 +13,7 @@ import javax.persistence.Id;
 @Entity
 @Getter
 @NoArgsConstructor
-@AllArgsConstructor
+/*@AllArgsConstructor*/
 @Builder
 public class Analyze {
 
@@ -34,5 +34,15 @@ public class Analyze {
     private Integer analyzePercent;
 
     @Column
-    private String userIp;
+    private String requestIp;
+
+    @Builder
+    public Analyze(Long id, String pictureDate, String pictureName, String analyzeResult, Integer analyzePercent, String requestIp){
+        this.id = id;
+        this.pictureDate = pictureDate;
+        this.pictureName = pictureName;
+        this.analyzeResult = analyzeResult;
+        this.analyzePercent = analyzePercent;
+        this.requestIp = requestIp;
+    }
 }

@@ -34,11 +34,4 @@ public class AnalyzeController {
         return new ResponseEntity<>(analyze, HttpStatus.CREATED);
     }
 
-  /*  *//*게시글 관련*//*
-    @GetMapping("/")
-    public String list(Model model) {
-        List<AnalyzeDTO> analyzeList = AnalyzeService.getAnalyzelistDTO();
-        model.addAttribute("analyzeList", analyzeList);
-        return "list.html";
-    }*/
 }

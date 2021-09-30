@@ -32,24 +32,4 @@ public class AnalyzeService {
         return analyze;
     }
 
-    /*게시판 관련
-    https://velog.io/@max9106/Spring-Boot-JPA-MySQL-%EA%B2%8C%EC%8B%9C%EA%B8%80-%EC%A1%B0%ED%9A%8C
-    @Transactional
-    public static List<AnalyzeDTO> getAnalyzelistDTO() {
-        List<Analyze> analyzes = analyzeRepository.findAll();
-        List<AnalyzeDTO> analyzeDtoList = new ArrayList<>();
-
-        for ( Analyze analyze : analyzes) {
-            AnalyzeDTO analyzeDTO = AnalyzeDTO.builder()
-                    .pictureDate(analyze.getPictureDate())
-                    .pictureName(analyze.getPictureName())
-                    .analyzeResult(analyze.getAnalyzeResult())
-                    .analyzePercent(analyze.getAnalyzePercent())
-                    .requestIp(analyze.getRequestIp())
-                    .build();
-
-            analyzeDtoList.add(analyzeDTO);
-        }
-        return analyzeDtoList;
-    }*/
 }

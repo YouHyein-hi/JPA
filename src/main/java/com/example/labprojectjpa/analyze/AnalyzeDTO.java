@@ -7,9 +7,11 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AnalyzeDTO {
+    private Long id;
     private String pictureDate;
     private String pictureName;
     private String analyzeResult;
     private Integer analyzePercent;
     private String requestIp;
+
 }

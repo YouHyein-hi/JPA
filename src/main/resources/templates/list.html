@@ -39,8 +39,6 @@
         animation-duration: 1.5s;
         animation-timing-function: ease;
         animation-iteration-count: infinite;
-        /* 위 속성들을 한 줄로 표기하기 */
-        /* -webkit-animation: blink 1.5s ease infinite; */
       }
     </style>
   </head>
@@ -68,22 +66,22 @@
               </thead>
               <tbody id="tbody">
                 <div var="article" items="${articles}" varStatus="status">
-                  <tr th:each="board : ${analyzeList}">
+                  <tr th:each="analyze : ${analyzeList}">
                     <td>
                       <span th:text="${analyze.id}"></span>
                     </td>
                     <td>
-                        <span th:text="${banalyze.pictureName}"></span>
+                        <span th:text="${analyze.pictureName}"></span>
                       </a>
                     </td>
                     <td>
-                      <span th:text="${banalyze.analyzeResult}"></span>
+                      <span th:text="${analyze.analyzeResult}"></span>
                     </td>
                     <td>
-                      <span th:text="${banalyze.analyzePercent}"></span>
+                      <span th:text="${analyze.analyzePercent}"></span>
                     </td>
                     <td>
-                      <span th:text="${banalyze.pictureDate}"></span>
+                      <span th:text="${analyze.pictureDate}"></span>
                     </td>
                   </tr>
                   <!--<tr>

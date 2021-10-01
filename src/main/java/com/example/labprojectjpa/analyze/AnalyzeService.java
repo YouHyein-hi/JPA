@@ -3,6 +3,8 @@ package com.example.labprojectjpa.analyze;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -31,5 +33,24 @@ public class AnalyzeService {
         Analyze analyze = analyzeRepository.findBypictureName(picName).orElseThrow(() -> new RuntimeException("DB 조회 결과가 없습니다."));
         return analyze;
     }
+
+    /*@Transactional
+    public List<AnalyzeDTO> getAnalyzelistDTO() {
+        List<Analyze> analyzes = analyzeRepository.findAll();
+        List<AnalyzeDTO> analyzeDTOList = new ArrayList<>();
+
+        for(Analyze analyze : analyzes) {
+            AnalyzeDTO analyzeDTO = AnalyzeDTO.builder()
+                    .id(analyze.getId())
+                    .pictureDate(analyze.getPictureDate())
+                    .pictureName(analyze.getPictureName())
+                    .analyzeResult(analyze.getAnalyzeResult())
+                    .analyzePercent(analyze.getAnalyzePercent())
+                    .requestIp(analyze.getRequestIp())
+                    .build();
+            analyzeDTOList.add(analyzeDTO);
+        }
+        return analyzeDTOList;
+    }*/
 
 }

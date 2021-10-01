@@ -33,4 +33,5 @@ public class UserController {
         User user = userService.addUser(userDto);
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
+
 }

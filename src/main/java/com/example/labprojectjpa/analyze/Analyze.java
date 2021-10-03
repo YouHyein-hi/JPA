@@ -5,19 +5,18 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Builder
 @Getter
 @NoArgsConstructor
-@Builder
+@AllArgsConstructor
 public class Analyze {
 
     @Id
-    @GeneratedValue
+    // 키 생성 전략에 대한 것 공부
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column
@@ -34,14 +33,17 @@ public class Analyze {
 
     @Column
     private String requestIp;
-
-    @Builder
-    public Analyze(Long id, String pictureDate, String pictureName, String analyzeResult, Integer analyzePercent, String requestIp){
-        this.id = id;
-        this.pictureDate = pictureDate;
-        this.pictureName = pictureName;
-        this.analyzeResult = analyzeResult;
-        this.analyzePercent = analyzePercent;
-        this.requestIp = requestIp;
-    }
 }
+
+/*
+@Entity
+@Builder
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+public class Analyze {
+
+    @Id
+    // 키 생성 전략에 대한 것 공부
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;*/

@@ -34,9 +34,10 @@ public class AnalyzeService {
         return analyze;
     }
 
-    /*@Transactional
+    /*게시판*/
+    @Transactional
     public List<AnalyzeDTO> getAnalyzelistDTO() {
-        List<Analyze> analyzes = analyzeRepository.findAll();
+            List<Analyze> analyzes = analyzeRepository.findAll();
         List<AnalyzeDTO> analyzeDTOList = new ArrayList<>();
 
         for(Analyze analyze : analyzes) {
@@ -51,6 +52,6 @@ public class AnalyzeService {
             analyzeDTOList.add(analyzeDTO);
         }
         return analyzeDTOList;
-    }*/
+    }
 
 }

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 @Service
 @RequiredArgsConstructor
@@ -24,6 +25,7 @@ public class AnalyzeService {
                 .analyzeResult(AnalyzeDto.getAnalyzeResult())
                 .analyzePercent(AnalyzeDto.getAnalyzePercent())
                 .requestIp(AnalyzeDto.getRequestIp())
+                .localeIpCountry(AnalyzeDto.getLocaleIpCountry())
                 .build();
         analyzeRepository.save(analyze);
         return analyze;
@@ -37,7 +39,7 @@ public class AnalyzeService {
     /*게시판*/
     @Transactional
     public List<AnalyzeDTO> getAnalyzelistDTO() {
-            List<Analyze> analyzes = analyzeRepository.findAll();
+        List<Analyze> analyzes = analyzeRepository.findAll();
         List<AnalyzeDTO> analyzeDTOList = new ArrayList<>();
 
         for(Analyze analyze : analyzes) {
@@ -54,4 +56,23 @@ public class AnalyzeService {
         return analyzeDTOList;
     }
 
+    /*ip 국가해서 가져오기*/
+    public Analyze getLocaleIp(AnalyzeDTO analyzeDTO, String requestIp) {
+        Locale locale = new Locale(requestIp);
+        String localIpCountry = locale.getCountry();
+
+        Analyze analyze = Analyze.builder()
+                .pictureName(analyzeDTO.getPictureName())
+                .pictureDate(analyzeDTO.getPictureDate())
+                .analyzeResult(analyzeDTO.getAnalyzeResult())
+                .analyzePercent(analyzeDTO.getAnalyzePercent())
+                .requestIp(analyzeDTO.getRequestIp())
+                .localeIpCountry(localIpCountry)
+                /*.localeIpCountry(getlocalIpCountry())*/
+                /*.localeIpCountry(locale.getCountry())*/
+                .build();
+
+        analyzeRepository.save(analyze);
+        return analyze;
+    }
 }

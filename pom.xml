@@ -89,6 +89,13 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
+
+
+        <dependency>
+            <groupId>javainetlocator</groupId>
+            <artifactId>inetaddresslocator</artifactId>
+            <version>2.18</version>
+        </dependency>
     </dependencies>
 
     <build>

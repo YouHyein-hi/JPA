@@ -1,13 +1,12 @@
 package com.example.labprojectjpa.analyze;
 
 import lombok.RequiredArgsConstructor;
+import net.sf.javainetlocator.InetAddressLocator;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,17 +23,24 @@ public class AnalyzeController {
     }
 
     @PostMapping("/analyze")
+    public ResponseEntity<Analyze> getLocaleIpCountry(AnalyzeDTO analyzeDto){
+        Analyze analyze = analyzeService.getLocaleIp(analyzeDto, analyzeDto.getRequestIp());
+        /*Analyze analyze = analyzeService.getLocaleIp(analyzeDto,analyze.getRequestIp());*/
+        return new ResponseEntity<>(analyze, HttpStatus.CREATED);
+    }
+
+    /*@PostMapping("/analyze")
     public ResponseEntity<Analyze> addAnalyze(AnalyzeDTO analyzeDto) {
         Analyze analyze = analyzeService.addAnalyze(analyzeDto);
         return new ResponseEntity<>(analyze, HttpStatus.CREATED);
-    }
+    }*/
 
     /*게시판*/
     @GetMapping("/list-test")
     public String list(Model model) {
         List<AnalyzeDTO> analyzeDTOList = analyzeService.getAnalyzelistDTO();
         model.addAttribute("analyzeList", analyzeDTOList);
-        return "list.html";
+        return "list";
     }
 
     @GetMapping("/analyze/{pictureName}")
@@ -42,4 +48,15 @@ public class AnalyzeController {
         Analyze analyze = analyzeService.getAnalyze(pictureName);
         return new ResponseEntity<>(analyze,HttpStatus.OK);
     }
+
+    /*DB에 ip, 나라, 지역(할 수 있으면) 저장하기*//*
+    @PostMapping("/")
+    public ResponseEntity<Analyze> getLocaleIpCountry(AnalyzeDTO analyzeDto){
+        Analyze analyze = analyzeService.getLocaleIp(analyzeDto, analyzeDto.getRequestIp());
+        *//*Analyze analyze = analyzeService.getLocaleIp(analyzeDto,analyze.getRequestIp());*//*
+        return new ResponseEntity<>(analyze, HttpStatus.CREATED);
+    }*/
+
+
+
 }

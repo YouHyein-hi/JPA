@@ -1,15 +1,18 @@
 package com.example.labprojectjpa.analyze;
 
 import lombok.RequiredArgsConstructor;
+import org.apache.tomcat.jni.Local;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class AnalyzeService {
 
     private final AnalyzeRepository analyzeRepository;
@@ -25,14 +28,14 @@ public class AnalyzeService {
                 .analyzeResult(AnalyzeDto.getAnalyzeResult())
                 .analyzePercent(AnalyzeDto.getAnalyzePercent())
                 .requestIp(AnalyzeDto.getRequestIp())
-                .localeIpCountry(AnalyzeDto.getLocaleIpCountry())
+                .countryIp(new Locale(AnalyzeDto.getRequestIp()).getCountry())
                 .build();
         analyzeRepository.save(analyze);
         return analyze;
     }
 
-    public Analyze getAnalyze(String picName) {
-        Analyze analyze = analyzeRepository.findBypictureName(picName).orElseThrow(() -> new RuntimeException("DB 조회 결과가 없습니다."));
+    public Analyze getAnalyze(String pictureName) {
+        Analyze analyze = analyzeRepository.findBypictureName(pictureName).orElseThrow(() -> new RuntimeException("DB 조회 결과가 없습니다."));
         return analyze;
     }
 
@@ -56,23 +59,21 @@ public class AnalyzeService {
         return analyzeDTOList;
     }
 
-    /*ip 국가해서 가져오기*/
-    public Analyze getLocaleIp(AnalyzeDTO analyzeDTO, String requestIp) {
-        Locale locale = new Locale(requestIp);
-        String localIpCountry = locale.getCountry();
+    /*게시판 상세페이지*/
+    @Transactional
+    public AnalyzeDTO getPost(Long id) {
+        Optional<Analyze> analyzeWrapper = analyzeRepository.findById(id);
+        Analyze analyze = analyzeWrapper.get();
 
-        Analyze analyze = Analyze.builder()
-                .pictureName(analyzeDTO.getPictureName())
-                .pictureDate(analyzeDTO.getPictureDate())
-                .analyzeResult(analyzeDTO.getAnalyzeResult())
-                .analyzePercent(analyzeDTO.getAnalyzePercent())
-                .requestIp(analyzeDTO.getRequestIp())
-                .localeIpCountry(localIpCountry)
-                /*.localeIpCountry(getlocalIpCountry())*/
-                /*.localeIpCountry(locale.getCountry())*/
+        AnalyzeDTO analyzeDTO = AnalyzeDTO.builder()
+                .id(analyze.getId())
+                .pictureDate(analyze.getPictureDate())
+                .pictureName(analyze.getPictureName())
+                .analyzeResult(analyze.getAnalyzeResult())
+                .analyzePercent(analyze.getAnalyzePercent())
+                .requestIp(analyze.getRequestIp())
                 .build();
 
-        analyzeRepository.save(analyze);
-        return analyze;
+        return analyzeDTO;
     }
 }

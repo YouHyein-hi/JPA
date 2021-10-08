@@ -1,148 +1,103 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="UTF-8">
-    <title>리스트 페이지</title>
-    <!-- Bootstrap -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-      #container {
-        width: 70%;
-        margin:0 auto;
-        padding-top: 10%; /* 테두리와 내용 사이의 패딩 여백 */
-      }
-      #list {
-        text-align: center;
-      }
-      #write {
-        text-align: right;
-      }
-      /* Bootstrap 수정 */
+<head>
+  <meta charset="UTF-8">
+  <title>리스트 페이지</title>
+  <!-- Bootstrap -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    #container {
+      width: 70%;
+      margin:0 auto;
+      padding-top: 10%; /* 테두리와 내용 사이의 패딩 여백 */
+    }
+    #list {
+      text-align: center;
+    }
+    #write {
+      text-align: right;
+    }
+    /* Bootstrap 수정 */
 
-      .table > thead > tr > th {
-        text-align: center;
-      }
-      .table-hover > tbody > tr:hover {
-        background-color: #e6ecff;
-      }
-      .table > tbody > tr > td {
-        text-align: center;
-      }
-      .table > tbody > tr > #title {
-        text-align: left;
-      }
-      div > #paging {
-        text-align: center;
-      }
-      .hit {
-        animation-name: blink;
-        animation-duration: 1.5s;
-        animation-timing-function: ease;
-        animation-iteration-count: infinite;
-      }
-    </style>
-  </head>
+    .table > thead > tr > th {
+      text-align: center;
+    }
+    .table-hover > tbody > tr:hover {
+      background-color: #e6ecff;
+    }
+    .table > tbody > tr > td {
+      text-align: center;
+    }
+    .table > tbody > tr > #title {
+      text-align: left;
+    }
+    div > #paging {
+      text-align: center;
+    }
+    .hit {
+      animation-name: blink;
+      animation-duration: 1.5s;
+      animation-timing-function: ease;
+      animation-iteration-count: infinite;
+    }
+  </style>
+</head>
 
-  <body class="bg-light">
-    <div id="container">
-      <div class="py-5 text-center">
-        <h2>리스트</h2>
-      </div>
-    <section class="ftco-section">
-      <div class="container">
-        <div class="row justify-content-center">
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <table class="table table-bordered table-hover">
-              <thead class="thead-primary">
-              <tr>
-                <th width="5%">번호</th>
-                <th width="40%">촬영 사진</th>
-                <th width="20%">분석 결과</th>
-                <th width="10%">%</th>
-                <th width="20%">사진 촬영 날짜</th>
-              </tr>
-              </thead>
-              <tbody id="tbody">
-                <div var="article" items="${articles}" varStatus="status">
-
-                  <tr th:each="analyze : ${analyzeList}">
-                    <td>
-                      <span th:text="${analyze.id}"></span>
-                    </td>
-                    <td>
-                        <span th:text="${analyze.pictureName}"></span>
-                      </a>
-                    </td>
-                    <td>
-                      <span th:text="${analyze.analyzeResult}"></span>
-                    </td>
-                    <td>
-                      <span th:text="${analyze.analyzePercent}"></span>
-                    </td>
-                    <td>
-                      <span th:text="${analyze.pictureDate}"></span>
-                    </td>
-                  </tr>
-                </div>
-              </tbody>
-            </table>
-            <!--<div> &lt;!&ndash; 페이징 기능 &ndash;&gt;
-              <span th:each = "pageNum : ${pageList}" th:inline = "text">
-                  <a th:href = "@{'/?page=' + ${pageNum}}">[[${pageNum}]]</a>
-                </span>
-            </div>-->
-          </div>
-        </div>
-      </div>
-  </section>
+<body class="bg-light">
+<div id="container">
+  <div class="py-5 text-center">
+    <h2>리스트</h2>
   </div>
-  </body>
-</html>
+  <section class="ftco-section">
+    <div class="container">
+      <div class="row justify-content-center">
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <table class="table table-bordered table-hover">
+            <thead class="thead-primary">
+            <tr>
+              <th width="5%">번호</th>
+              <th width="40%">촬영 사진</th>
+              <th width="20%">분석 결과</th>
+              <th width="10%">%</th>
+              <th width="20%">사진 촬영 날짜</th>
+            </tr>
+            </thead>
+            <tbody id="tbody">
+            <div var="article" items="${articles}" varStatus="status">
 
-
-
-
-<!--
-<!DOCTYPE html>
-<html lang = "ko">
-  <head>
-    <meta charset="UTF-8">
-    <title>게시판</title>
-    <link rel="stylesheet" th:htef="@{/css/style.css}"
-  </head>
-  <body>
-    <div class = "container">
-      <h2>게시판 목록</h2>
-      <table class = "board_list">
-        <colgorup>
-          <col width="15%"/>
-          <col width="*%"/>
-          <col width="15%"/>
-          <col width="20%"/>
-        </colgorup>
-        <thead>
-          <tr>
-            <th scope="col">글 번호</th>
-            <th scope="col">사진</th>
-            <th scope="col">분석 결과</th>
-            <th scope="col">분석 %</th>
-            <th scope="col">촬영 날짜</th>
-          </tr>
-        </thead>
-        <tdody>
-          <tr th:if = "${#lists.size{list} > 0" th:eatch = "list : ${list}">
-            <td th:text = "${list.boardidx}"></td>
-            <td class = "title" th:text= "${list.title}"></td>
-            <td th:text = "${#temporals.format(list.createdDatetime,'yyyy-MM-dd HH:mm:ss')}"></td>
-          </tr>
-          <tr th:unless="'${#lists.size(list)} > 0'">
-            <td colspan = "4">조회된 결과가 없습니다.</td>
-          </tr>
-        </tdody>
-      </table>
-      <a href = "board.openBoardWrite.do" class = "btn">글 쓰기</a>
+              <tr th:each="analyze : ${analyzeList}">
+                <td>
+                  <span th:text="${analyze.id}"></span>
+                </td>
+                <td>
+                  <a th:href="@{'/list-test/' + ${analyze.id}}">
+                    <span th:text="${analyze.pictureName}"></span>
+                  </a>
+                </td>
+                <td>
+                  <span th:text="${analyze.analyzeResult}"></span>
+                </td>
+                <td>
+                  <span th:text="${analyze.analyzePercent}"></span>
+                </td>
+                <td>
+                  <span th:text="${analyze.pictureDate}"></span>
+                </td>
+              </tr>
+            </div>
+            </tbody>
+          </table>
+          <!--<div> &lt;!&ndash; 페이징 기능 &ndash;&gt;
+            <span th:each = "pageNum : ${pageList}" th:inline = "text">
+                <a th:href = "@{'/?page=' + ${pageNum}}">[[${pageNum}]]</a>
+              </span>
+          </div>-->
+        </div>
+      </div>
     </div>
-  </body>
-</html>-->
+  </section>
+</div>
+</body>
+</html>

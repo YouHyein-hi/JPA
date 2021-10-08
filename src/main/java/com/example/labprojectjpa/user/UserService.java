@@ -35,9 +35,10 @@ public class UserService {
     public String login(String userId, String userPassword) {
         Optional<User> user = userRepository.findByUserId(userId);
         if(user.get().getUserPassword().equals(userPassword)) {
-            return "loginOK.html";
+            return "list";
+        } else{
+            return "login";
         }
-        return "loginFail.html";
     }
 
 

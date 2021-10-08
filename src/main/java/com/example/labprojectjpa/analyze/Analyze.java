@@ -1,5 +1,6 @@
 package com.example.labprojectjpa.analyze;
 
+import com.example.labprojectjpa.BaseTimeEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -12,7 +13,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Analyze {
+public class Analyze extends BaseTimeEntity {
 
     @Id
     // 키 생성 전략에 대한 것 공부
@@ -33,17 +34,7 @@ public class Analyze {
 
     @Column
     private String requestIp;
+
+    @Column
+    private String countryIp;
 }
-
-/*
-@Entity
-@Builder
-@Getter
-@NoArgsConstructor
-@AllArgsConstructor
-public class Analyze {
-
-    @Id
-    // 키 생성 전략에 대한 것 공부
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;*/

@@ -22,6 +22,12 @@ public class UserController {
         return new ResponseEntity<>(list,HttpStatus.OK);
     }
 
+    @PostMapping("/user")
+    public ResponseEntity<User> addUser(UserDTO userDto) {
+        User user = userService.addUser(userDto);
+        return new ResponseEntity<>(user, HttpStatus.CREATED);
+    }
+
     /*로그인 컨트롤러?*/
     @RequestMapping(value = "/login",method = RequestMethod.GET)
     public String login(){
@@ -36,27 +42,15 @@ public class UserController {
         return new ResponseEntity(HttpStatus.BAD_REQUEST);
     }
 
-    @PostMapping("/login")
-    public String signIn(String inputUserId, String inputUserPassword) {
-        User user = userRepository.findByUserIdAndUserPassword(inputUserId, inputUserPassword).orElseThrow(()->new RuntimeException("DB 조회 실패"));
-        if (user != null) {
-            return "list";
-        }
-        return "login";
-    }
-
     @GetMapping("/user/{userId}")
     public ResponseEntity<User> getUser(@PathVariable String userId){
         User user = userService.getUser(userId);
         return new ResponseEntity<>(user,HttpStatus.OK);
     }
 
-    @PostMapping("/user")
-    public ResponseEntity<User> addUser(UserDTO userDto) {
-        User user = userService.addUser(userDto);
-        return new ResponseEntity<>(user, HttpStatus.CREATED);
+    @PostMapping("/login")
+    public String signIn(String inputUserId, String inputUserPassword) {
+        User user = userRepository.findByUserIdAndUserPassword(inputUserId, inputUserPassword).orElseThrow(()->new RuntimeException("DB 조회 실패"));
+        return "list";
     }
-
-
-
 }

@@ -23,17 +23,10 @@ public class AnalyzeController {
     }
 
     @PostMapping("/analyze")
-    public ResponseEntity<Analyze> getLocaleIpCountry(AnalyzeDTO analyzeDto){
-        Analyze analyze = analyzeService.getLocaleIp(analyzeDto, analyzeDto.getRequestIp());
-        /*Analyze analyze = analyzeService.getLocaleIp(analyzeDto,analyze.getRequestIp());*/
-        return new ResponseEntity<>(analyze, HttpStatus.CREATED);
-    }
-
-    /*@PostMapping("/analyze")
     public ResponseEntity<Analyze> addAnalyze(AnalyzeDTO analyzeDto) {
         Analyze analyze = analyzeService.addAnalyze(analyzeDto);
         return new ResponseEntity<>(analyze, HttpStatus.CREATED);
-    }*/
+    }
 
     /*게시판*/
     @GetMapping("/list-test")
@@ -43,20 +36,17 @@ public class AnalyzeController {
         return "list";
     }
 
+    /*게시판 상세페이지*/
+    @GetMapping("/list-test/{no}")
+    public String detail(@PathVariable("no") Long id, Model model) {
+        AnalyzeDTO analyzeDTO = analyzeService.getPost(id);
+        model.addAttribute("analyzeDTO", analyzeDTO);
+        return "detail";
+    }
+
     @GetMapping("/analyze/{pictureName}")
     public ResponseEntity<Analyze> getAnalyze(@PathVariable String pictureName){
         Analyze analyze = analyzeService.getAnalyze(pictureName);
         return new ResponseEntity<>(analyze,HttpStatus.OK);
     }
-
-    /*DB에 ip, 나라, 지역(할 수 있으면) 저장하기*//*
-    @PostMapping("/")
-    public ResponseEntity<Analyze> getLocaleIpCountry(AnalyzeDTO analyzeDto){
-        Analyze analyze = analyzeService.getLocaleIp(analyzeDto, analyzeDto.getRequestIp());
-        *//*Analyze analyze = analyzeService.getLocaleIp(analyzeDto,analyze.getRequestIp());*//*
-        return new ResponseEntity<>(analyze, HttpStatus.CREATED);
-    }*/
-
-
-
 }

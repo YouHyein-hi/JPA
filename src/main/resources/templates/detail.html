@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>상세 페이지</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        #container {
+            width: 70%;
+            margin:0 auto;
+            padding-top: 10%; /* 테두리와 내용 사이의 패딩 여백 */
+        }
+        #list {
+            text-align: center;
+        }
+        #write {
+            text-align: right;
+        }
+        /* Bootstrap 수정 */
+
+        .table > thead > tr > th {
+            text-align: center;
+        }
+        .table > tbody > tr > td {
+            text-align: center;
+        }
+        .table > tbody > tr > #title {
+            text-align: left;
+        }
+        div > #paging {
+            text-align: center;
+        }
+        .hit {
+            animation-name: blink;
+            animation-duration: 1.5s;
+            animation-timing-function: ease;
+            animation-iteration-count: infinite;
+        }
+    </style>
+</head>
+
+<body class="bg-light">
+    <div class="container">
+        <div class="py-5 text-center">
+            <h2>게시글 상세 화면</h2>
+        </div>
+        <section class="ftco-section">
+            <div class="container">
+                <div class="row justify-content-center">
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-bordered">
+                            <colgroup>
+                                <col width="15%"/>
+                                <col width="35%"/>
+                                <col width="15%"/>
+                                 <col width="35%"/>
+                            </colgroup>
+                            <tbody id="tbody">
+                                <div var="article" items="${articles}" varStatus="status">
+                                    <tr th:each="analyze : ${analyzeList}">
+                                        <th>글 번호</th>
+                                        <td th:text="${analyze.id}"></td>
+                                        <th>사진 촬영일</th>
+                                        <td th:text="${analyze.pictureDate}"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>분석 결과</th>
+                                        <td th:text="${analyze.analyzeResult}"></td>
+                                        <th>분석 %</th>
+                                        <td th:text="${analyze.analyzePersent}"></td>
+                                    </tr>
+                                    <tr>
+                                    </tr>
+                                </div>
+                            </tbody>
+                            <caption>게시글 상세 내용, 분석 사진</caption>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

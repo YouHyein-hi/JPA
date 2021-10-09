@@ -62,6 +62,7 @@
               <th width="20%">분석 결과</th>
               <th width="10%">%</th>
               <th width="20%">사진 촬영 날짜</th>
+              <th width="20%">사용자 ip 국가</th>
             </tr>
             </thead>
             <tbody id="tbody">
@@ -84,6 +85,9 @@
                 </td>
                 <td>
                   <span th:text="${analyze.pictureDate}"></span>
+                </td>
+                <td>
+                  <span th:text="${analyze.countryIp}"></span>
                 </td>
               </tr>
             </div>

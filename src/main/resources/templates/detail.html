@@ -65,13 +65,11 @@
                                         <th>사진 촬영일</th>
                                         <td th:text="${analyze.pictureDate}"></td>
                                     </tr>
-                                    <tr>
+                                    <tr th:each="analyze : ${analyzeList}">
                                         <th>분석 결과</th>
                                         <td th:text="${analyze.analyzeResult}"></td>
                                         <th>분석 %</th>
-                                        <td th:text="${analyze.analyzePersent}"></td>
-                                    </tr>
-                                    <tr>
+                                        <td th:text="${analyze.analyzePercent}"></td> <!--Integer 처리만 하면 끝날 듯!-->
                                     </tr>
                                 </div>
                             </tbody>

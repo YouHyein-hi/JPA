@@ -40,7 +40,7 @@ public class AnalyzeController {
     @GetMapping("/list-test/{no}")
     public String detail(@PathVariable("no") Long id, Model model) {
         AnalyzeDTO analyzeDTO = analyzeService.getPost(id);
-        model.addAttribute("analyzeDTO", analyzeDTO);
+        model.addAttribute("analyzeList", analyzeDTO);
         return "detail";
     }
 

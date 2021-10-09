@@ -28,7 +28,7 @@ public class AnalyzeService {
                 .analyzeResult(AnalyzeDto.getAnalyzeResult())
                 .analyzePercent(AnalyzeDto.getAnalyzePercent())
                 .requestIp(AnalyzeDto.getRequestIp())
-                .countryIp(new Locale(AnalyzeDto.getRequestIp()).getCountry())
+                .countryIp(new Locale(AnalyzeDto.getRequestIp()).getDisplayCountry())
                 .build();
         analyzeRepository.save(analyze);
         return analyze;
@@ -53,6 +53,7 @@ public class AnalyzeService {
                     .analyzeResult(analyze.getAnalyzeResult())
                     .analyzePercent(analyze.getAnalyzePercent())
                     .requestIp(analyze.getRequestIp())
+                    .countryIp(new Locale(analyze.getRequestIp()).getDisplayCountry())
                     .build();
             analyzeDTOList.add(analyzeDTO);
         }
@@ -72,6 +73,7 @@ public class AnalyzeService {
                 .analyzeResult(analyze.getAnalyzeResult())
                 .analyzePercent(analyze.getAnalyzePercent())
                 .requestIp(analyze.getRequestIp())
+                .countryIp(new Locale(analyze.getRequestIp()).getDisplayCountry())
                 .build();
 
         return analyzeDTO;
